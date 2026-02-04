@@ -1,133 +1,97 @@
+---
+name: BlogBurst
+description: Turn any article into 10+ social media posts in seconds. AI-powered content repurposing for Twitter, LinkedIn, Bluesky, Telegram, Discord & more.
+homepage: https://blogburst.ai
+metadata:
+  {"openclaw": {"emoji": "📝", "requires": {"env": ["BLOGBURST_API_KEY"]}, "primaryEnv": "BLOGBURST_API_KEY"}}
+---
+
 # BlogBurst - AI Content Repurposing
 
-Turn any article or blog post into 10+ social media posts in seconds.
+Turn any article or blog post into 10+ platform-optimized social media posts in seconds.
 
-## What it does
+## Why BlogBurst?
 
-BlogBurst automatically transforms your long-form content into platform-optimized social media posts for:
-- Twitter/X (threads)
-- LinkedIn
-- Bluesky
-- Telegram
-- Discord
-- Reddit
-- Product Hunt
+- **Save 3+ hours daily** - Stop manually rewriting content for each platform
+- **Platform-optimized** - Each post is tailored for the platform's culture and limits
+- **One click, 7 platforms** - Twitter, LinkedIn, Bluesky, Telegram, Discord, Reddit, Product Hunt
 
-## Usage
+## Quick Start
 
-### Repurpose an article URL
+Just tell OpenClaw:
+
 ```
-Repurpose this article for social media: https://example.com/my-blog-post
+Repurpose this article for Twitter and LinkedIn: https://myblog.com/post
 ```
 
-### Repurpose text content
-```
-Turn this into social posts:
+Or paste your content directly:
 
-[paste your article text here]
 ```
+Turn this into social posts for all platforms:
 
-### Specify platforms
-```
-Create Twitter and LinkedIn posts from: https://example.com/article
+[Your article text here]
 ```
 
-## API Integration
+## Supported Platforms
 
-This skill uses the BlogBurst API. You'll need a free API key from [blogburst.ai](https://blogburst.ai).
+| Platform | Limit | Style |
+|----------|-------|-------|
+| Twitter/X | 280 chars | Threads with hooks |
+| LinkedIn | 3000 chars | Professional insights |
+| Bluesky | 300 chars | Casual, authentic |
+| Telegram | 4096 chars | Rich formatting |
+| Discord | 2000 chars | Community-focused |
+| Reddit | 40000 chars | Genuine discussion |
+| Product Hunt | 1000 chars | Maker stories |
 
-### Setup
+## Setup
 
-1. Get your API key at https://blogburst.ai/dashboard/api
-2. Set the environment variable:
+1. Get free API key at [blogburst.ai](https://blogburst.ai)
+2. Set environment variable:
 ```bash
-export BLOGBURST_API_KEY="your-api-key"
+export BLOGBURST_API_KEY="your-key"
 ```
 
-### API Endpoint
+## Example Output
+
+**Input:** "How to grow your startup with content marketing..."
+
+**Twitter output:**
+```
+1/ Most startups waste $10k/month on ads. Here's how we grew to 50k users with $0 ad spend.
+
+2/ The secret? Content repurposing. One blog post = 15 social posts = 10x reach.
+
+3/ Here's our exact system...
+```
+
+**LinkedIn output:**
+```
+I stopped spending money on ads 6 months ago.
+
+Result? 3x more leads.
+
+Here's the counterintuitive strategy...
+```
+
+## API Usage
 
 ```bash
 curl -X POST https://api.blogburst.ai/api/v1/repurpose \
   -H "Authorization: Bearer $BLOGBURST_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{
-    "content": "Your article text or URL here",
-    "platforms": ["twitter", "linkedin", "bluesky"],
-    "tone": "professional",
-    "language": "en"
-  }'
+  -d '{"content": "Your text", "platforms": ["twitter", "linkedin"]}'
 ```
-
-### Response
-
-```json
-{
-  "results": {
-    "twitter": {
-      "thread": ["1/ First tweet...", "2/ Second tweet...", "3/ Final tweet #hashtag"]
-    },
-    "linkedin": {
-      "post": "Full LinkedIn post content...",
-      "hashtags": ["#ContentMarketing", "#AI"]
-    },
-    "bluesky": {
-      "posts": ["Short post for Bluesky..."]
-    }
-  }
-}
-```
-
-## Examples
-
-### Example 1: Quick repurpose
-```
-User: Repurpose my latest blog post about AI automation for Twitter and LinkedIn
-
-OpenClaw: I'll use BlogBurst to create optimized posts...
-
-[Returns Twitter thread + LinkedIn post]
-```
-
-### Example 2: Batch content
-```
-User: Create a week's worth of social content from this article
-
-OpenClaw: I'll generate varied posts for each platform...
-
-[Returns multiple posts per platform with different angles]
-```
-
-## Supported Platforms
-
-| Platform | Character Limit | Features |
-|----------|----------------|----------|
-| Twitter/X | 280 | Threads, hashtags |
-| LinkedIn | 3000 | Long-form, hashtags |
-| Bluesky | 300 | Short posts |
-| Telegram | 4096 | Markdown, longer content |
-| Discord | 2000 | Markdown, embeds |
-| Reddit | 40000 | Title + body, subreddit suggestions |
-| Product Hunt | 1000 | Tagline, description, maker comment |
 
 ## Tone Options
 
 - `professional` - Business-appropriate
 - `casual` - Friendly and relaxed
 - `witty` - Clever and humorous
-- `educational` - Informative and teaching-focused
-
-## Language Support
-
-- English (`en`)
-- Chinese (`zh`)
-- More coming soon
+- `educational` - Teaching-focused
 
 ## Links
 
 - Website: https://blogburst.ai
 - API Docs: https://api.blogburst.ai/docs
-- Support: support@blogburst.ai
-
-## Tags
-
-content-repurposing, social-media, ai, automation, twitter, linkedin, bluesky, marketing
+- GitHub: https://github.com/shensi8312/blogburst-openclaw-skill
