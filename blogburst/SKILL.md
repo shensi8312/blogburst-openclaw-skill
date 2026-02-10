@@ -78,7 +78,7 @@ Here's the counterintuitive strategy...
 
 ```bash
 curl -X POST https://api.blogburst.ai/api/v1/repurpose \
-  -H "Authorization: Bearer $BLOGBURST_API_KEY" \
+  -H "X-API-Key: $BLOGBURST_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"content": "Your text", "platforms": ["twitter", "linkedin"]}'
 ```
