@@ -225,6 +225,78 @@ Transform an existing blog post or article into platform-optimized posts.
 
 ---
 
+## API 5: Publish to Connected Platforms
+
+Publish content directly to the user's connected social accounts.
+
+**IMPORTANT**: Before using this API, the user must first connect their social accounts at [blogburst.ai/dashboard/connections](https://blogburst.ai/dashboard/connections). Without connected accounts, publishing will fail.
+
+### Check Connected Accounts
+
+**Endpoint**: `GET /publish/connected`
+
+**Response**:
+```json
+{
+  "platforms": [
+    {
+      "platform": "bluesky",
+      "username": "@user.bsky.social",
+      "connected_at": "2026-02-01T10:00:00Z",
+      "capabilities": {"text": true, "images": true, "video": true}
+    },
+    {
+      "platform": "telegram",
+      "username": "MyChannel",
+      "connected_at": "2026-02-01T10:00:00Z",
+      "capabilities": {"text": true, "images": true, "video": true}
+    }
+  ]
+}
+```
+
+**When to use**: Before publishing, call this to check which platforms the user has connected. If no platforms are connected, tell the user to visit https://blogburst.ai/dashboard/connections to connect their accounts first.
+
+### Publish Content
+
+**Endpoint**: `POST /publish`
+
+**Request**:
+```json
+{
+  "platforms": ["bluesky", "telegram", "discord"],
+  "content": "Your post content here",
+  "image_urls": ["https://example.com/image.jpg"],
+  "video_url": null
+}
+```
+
+**Parameters**:
+- `platforms` (required): Array of connected platform IDs to publish to
+- `content` (required): The text content to publish
+- `image_urls` (optional): Array of image URLs to attach
+- `video_url` (optional): Video URL to attach
+- `reddit_subreddit` (optional): Subreddit name for Reddit posts
+- `reddit_title` (optional): Post title for Reddit
+
+**Response**:
+```json
+{
+  "total": 3,
+  "successful": 2,
+  "failed": 1,
+  "results": [
+    {"platform": "bluesky", "success": true, "post_url": "https://bsky.app/..."},
+    {"platform": "telegram", "success": true, "post_url": "https://t.me/..."},
+    {"platform": "discord", "success": false, "error": "Webhook expired"}
+  ]
+}
+```
+
+**When to use**: After generating content with API 3 or API 4, when the user wants to actually publish it to their connected platforms. Always check connected accounts first with `GET /publish/connected`.
+
+---
+
 ## Recommended Workflow
 
 For the best results, guide the user through this flow:
@@ -233,27 +305,33 @@ For the best results, guide the user through this flow:
 2. Call **API 1** (`/chat/title`) to brainstorm titles together
 3. Once they pick a title, call **API 3** (`/blog/platforms`) to generate content for their chosen platforms
 4. Present the generated content organized by platform
+5. If the user wants to publish, first call `GET /publish/connected` to check which accounts are connected
+6. If accounts are connected, call **API 5** (`/publish`) with the generated content for each platform
+7. If no accounts are connected, tell the user: "Please connect your social accounts at https://blogburst.ai/dashboard/connections first"
 
 If the user already has a blog post URL, skip to **API 4** (`/repurpose`).
 
 If the user wants a full blog article first, use **API 2** (`/blog/generate`) before step 3.
 
+**Note on publishing**: Each platform receives the content tailored for it. For example, send the Twitter thread text to Twitter, the LinkedIn post text to LinkedIn, etc. Do NOT send the same raw content to all platforms — use the platform-specific output from API 3.
+
 ## Supported Platforms
 
-| Platform | ID | Content Style |
-|----------|-----|---------------|
-| Twitter/X | twitter | Threads with hooks (280 chars per tweet) |
-| LinkedIn | linkedin | Professional insights + hashtags |
-| Bluesky | bluesky | Short authentic posts (300 chars) |
-| Telegram | telegram | Rich formatted broadcasts |
-| Discord | discord | Community-friendly announcements |
-| Reddit | reddit | Discussion posts with subreddit suggestions |
-| TikTok | tiktok | Hook + script + caption + hashtags |
-| YouTube | youtube | Title + description + script + tags |
-| Threads | threads | Conversational posts |
+| Platform | ID | Generate | Auto-Publish | Notes |
+|----------|-----|----------|-------------|-------|
+| Twitter/X | twitter | Yes | Yes | Threads with hooks (280 chars/tweet) |
+| LinkedIn | linkedin | Yes | Coming soon | Professional insights + hashtags |
+| Bluesky | bluesky | Yes | Yes | Short authentic posts (300 chars) |
+| Telegram | telegram | Yes | Yes | Rich formatted broadcasts |
+| Discord | discord | Yes | Yes | Community-friendly announcements |
+| Reddit | reddit | Yes | Waiting API | Discussion posts + subreddit suggestions |
+| TikTok | tiktok | Yes | Yes | Hook + script + caption + hashtags |
+| YouTube | youtube | Yes | Yes | Title + description + script + tags |
+| Threads | threads | Yes | Coming soon | Conversational posts |
 
 ## Links
 
 - Website: https://blogburst.ai
 - API Docs: https://api.blogburst.ai/docs
+- Connect Accounts: https://blogburst.ai/dashboard/connections
 - GitHub: https://github.com/shensi8312/blogburst-openclaw-skill
