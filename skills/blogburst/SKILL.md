@@ -1,22 +1,50 @@
 ---
-name: BlogBurst - AI Social Media Agent
-description: Autonomous AI marketing agent. Chat naturally to generate content, manage auto-pilot, check analytics, and post to 9 platforms (Twitter/X, LinkedIn, Bluesky, Telegram, Discord, Reddit, TikTok, YouTube, Threads). One command to automate your entire social media.
+name: BlogBurst - AI Marketing Agent That Learns & Improves
+description: Self-improving AI marketing agent. Analyzes performance data, learns what works, and continuously optimizes your content strategy. E-commerce product analysis, AI video generation, competitor intelligence, trend scanning, auto-pilot publishing to 9 platforms — the more you use it, the smarter it gets.
 homepage: https://blogburst.ai
 metadata:
   {"openclaw": {"emoji": "🚀", "requires": {"env": ["BLOGBURST_API_KEY"]}, "primaryEnv": "BLOGBURST_API_KEY"}}
 ---
 
-# BlogBurst - AI Social Media Marketing Agent
+# BlogBurst - AI Marketing Agent That Learns & Improves
 
-Your autonomous AI marketing agent. Talk naturally — it generates content, publishes to 9 platforms, runs auto-pilot daily posting, tracks analytics, and learns what works.
+## CRITICAL INSTRUCTION — YOU MUST FOLLOW THIS:
+
+### Step 1: Check API Key
+Before doing ANYTHING, run: `echo $BLOGBURST_API_KEY`
+
+**If the output is empty or the variable is not set**, do NOT proceed with API calls. Instead, guide the user through setup:
+
+1. Say: "Welcome to BlogBurst! 🚀 Let me help you get set up. It only takes 30 seconds."
+2. Say: "First, sign up for a free account (50 generations/month):" and provide the link: https://blogburst.ai
+3. Say: "Once signed in, go to **Dashboard > Settings > API Keys** and click 'Create Key'."
+4. Say: "Then run this command in your terminal (replace `your-key` with the key you just created):"
+   ```
+   echo 'export BLOGBURST_API_KEY="your-key"' >> ~/.zshrc && source ~/.zshrc
+   ```
+5. Say: "After that, restart OpenClaw or run `source ~/.zshrc`, then try `/blogburst` again!"
+6. If the user says they've done it, verify by running: `curl -s "https://api.blogburst.ai/api/v1/usage" -H "X-API-Key: $BLOGBURST_API_KEY"`
+7. If successful, say: "All set! Try: /blogburst generate a post about [topic]"
+
+### Step 2: Make API Calls
+When `$BLOGBURST_API_KEY` is set, you MUST use the `exec` tool to run `curl` commands against the BlogBurst API. Do NOT use web_search or any other tool as a substitute. The API returns real user-specific data (their posts, their analytics, their auto-pilot status). Web search cannot provide this.
+
+**How to execute:** Use `exec` with `curl -s "https://api.blogburst.ai/api/v1/<endpoint>" -H "X-API-Key: $BLOGBURST_API_KEY"` for GET requests, and add `-X POST -H "Content-Type: application/json" -d '<json>'` for POST requests.
+
+---
+
+Your self-improving AI marketing agent. It analyzes performance data, learns from every post, and continuously optimizes your content strategy. Supports e-commerce product analysis, AI video generation (FFmpeg/Kling/Runway), competitor intelligence, trend scanning, and auto-pilot publishing to 9 platforms. The more you use it, the smarter it gets.
 
 **One message to do anything:**
 - "Post about my product launch on Twitter and LinkedIn"
 - "Turn on auto-pilot, 3 posts per day"
 - "How did my posts perform this week?"
 - "Repurpose this article: https://myblog.com/post"
+- "Add my product and analyze it for TikTok content"
+- "Find my competitors and show me insights"
+- "Generate a product video for TikTok"
 
-## Setup
+## Setup (Manual)
 
 1. Sign up free at [blogburst.ai](https://blogburst.ai)
 2. Dashboard > Settings > API Keys > Create key
@@ -32,7 +60,7 @@ Base URL: `https://api.blogburst.ai/api/v1`
 
 ## API 1: Agent Chat (Recommended — does everything)
 
-Chat with your AI marketing agent. It can generate content, check analytics, manage auto-pilot, view trending topics, and more — all through natural conversation. The agent has tools and will execute actions automatically.
+Chat with your self-improving AI marketing agent. It generates content, checks analytics, manages auto-pilot, scans trends, analyzes competitors, manages e-commerce products, and continuously learns from your feedback and performance data. The agent has tools and executes actions automatically — the more you use it, the smarter it gets.
 
 **Endpoint**: `POST /assistant/agent-chat-v2`
 
@@ -87,8 +115,9 @@ Multi-turn conversation — send the full message history each time:
 - "How are my posts doing this week?"
 - "Turn on auto-pilot" / "Pause auto-pilot"
 - "What did you post today?"
-- "What platforms do I have connected?"
-- "Show me my recent activity"
+- "Add my product and create a TikTok video"
+- "Who are my competitors? Show me insights"
+- "What has the AI learned about my audience?"
 
 **When to use**: This is the PRIMARY API. Use it for any user request about social media content, analytics, automation, or marketing. It handles everything through conversation.
 
@@ -294,6 +323,110 @@ Generate a full blog article from a topic.
 
 ---
 
+## API 8: E-commerce Products
+
+Manage your product catalog. Upload products, run AI Vision analysis, and generate TikTok-ready videos.
+
+**List products**: `GET /ecommerce/products`
+
+**Create product**: `POST /ecommerce/products`
+
+```json
+{
+  "name": "Wireless Earbuds Pro",
+  "price": 29.99,
+  "currency": "USD",
+  "category": "electronics",
+  "description": "Noise-cancelling wireless earbuds",
+  "purchase_url": "https://amazon.com/dp/..."
+}
+```
+
+**AI Vision analysis**: `POST /ecommerce/products/{id}/analyze`
+
+```json
+{ "language": "en" }
+```
+
+Response includes: product type, selling points, target audience, visual features, and content angle suggestions — all extracted by Gemini Vision from your product images.
+
+**Generate product video**: `POST /ecommerce/products/{id}/video`
+
+```json
+{ "provider": "ffmpeg" }
+```
+
+Video providers:
+- `ffmpeg` — Free slideshow video (product images + transitions + text overlay)
+- `kling` — Kling AI motion video (~$0.15/5sec, Pro plan)
+- `runway` — Runway Gen-3 cinematic video (Team plan)
+
+**When to use**: When user wants to add products, analyze them with AI, or create TikTok videos.
+
+---
+
+## API 9: Competitor Intelligence
+
+AI-powered competitor discovery and analysis. Automatically finds competitors, analyzes their content strategy, and generates actionable insights.
+
+**Discover competitors**: `POST /competitors/discover`
+
+```json
+{ "language": "en" }
+```
+
+AI uses Google Search to find your top competitors based on your product category.
+
+**List competitors**: `GET /competitors`
+
+Response includes: competitor name, website, threat level, content strategy analysis, posting frequency, engagement metrics.
+
+**Get insights**: `GET /competitors/insights?language=en`
+
+Returns competitive landscape analysis with:
+- Opportunities your competitors are missing
+- Threats to watch out for
+- Priority actions ranked by impact
+- Content gaps you can exploit
+
+Competitor data is automatically refreshed weekly.
+
+**When to use**: When user asks about competitors, market position, or content strategy gaps.
+
+---
+
+## API 10: Content Feedback (Continuous Learning)
+
+Rate agent-generated content to train the AI. The agent learns from your thumbs up/down feedback and adjusts future content accordingly — the more feedback you give, the better it gets.
+
+**Submit feedback**: `POST /feedback/content`
+
+```json
+{
+  "target_type": "post",
+  "target_id": "post_123",
+  "rating": "thumbs_up",
+  "comment": "Great hook, more like this",
+  "content_type": "product_showcase"
+}
+```
+
+Parameters:
+- `target_type`: post | opportunity | suggestion | content_type
+- `rating`: thumbs_up | thumbs_down
+- `comment` (optional): Explain what you liked/disliked
+- `content_type` (optional): e.g. product_showcase, lifestyle, comparison, trending_challenge
+
+**Get feedback summary**: `GET /feedback/content/summary`
+
+Shows aggregated scores by content type so you can see what the AI has learned about your preferences.
+
+**How it works**: The AI uses your feedback history to reorder content types (liked styles first, disliked last) and adjusts tone/format in future auto-pilot runs. Combined with performance analytics, this creates a continuous improvement loop — every post teaches the AI what works for your audience.
+
+**When to use**: After viewing agent-generated content, when user wants to rate it or train the AI.
+
+---
+
 ## Recommended Workflows
 
 ### Quick content generation
@@ -316,6 +449,22 @@ User shares a URL or pastes text
 ### Automation
 User says: "Automate my posting" or "Turn on auto-pilot"
 → Call **API 4** (`/assistant/auto-pilot`)
+
+### E-commerce product launch
+1. Create product with **API 8** (`/ecommerce/products`)
+2. Upload images, then run AI analysis (`/ecommerce/products/{id}/analyze`)
+3. Generate TikTok video (`/ecommerce/products/{id}/video`)
+4. Enable auto-pilot with **API 4** — the AI rotates products daily
+
+### Competitor research
+1. Auto-discover competitors with **API 9** (`/competitors/discover`)
+2. View insights (`/competitors/insights`) — updated weekly
+3. Agent uses competitor data to generate differentiated content
+
+### Train the AI
+User rates content → **API 10** (`/feedback/content`)
+→ AI adjusts future content based on your preferences
+→ Combined with analytics data, each post teaches the AI what works
 
 ## Supported Platforms
 
