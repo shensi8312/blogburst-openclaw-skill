@@ -470,15 +470,17 @@ User rates content → **API 10** (`/feedback/content`)
 
 | Platform | ID | Auto-Publish | Content Style |
 |----------|-----|:---:|---------------|
-| Twitter/X | twitter | Manual | Threads with hooks (280 chars/tweet) |
+| Twitter/X | twitter | ✅ Yes | Threads with hooks (280 chars/tweet) |
+| Bluesky | bluesky | ✅ Yes | Short authentic posts (300 chars) |
+| Telegram | telegram | ✅ Yes | Rich formatted broadcasts |
+| Discord | discord | ✅ Yes | Community-friendly announcements |
+| Reddit | reddit | Copy-only | Discussion posts + subreddit suggestions |
+| TikTok | tiktok | Copy-only | Hook + script + caption + hashtags |
+| YouTube | youtube | Copy-only | Title + description + script + tags |
 | LinkedIn | linkedin | Coming soon | Professional insights + hashtags |
-| Bluesky | bluesky | Yes | Short authentic posts (300 chars) |
-| Telegram | telegram | Yes | Rich formatted broadcasts |
-| Discord | discord | Yes | Community-friendly announcements |
-| Reddit | reddit | Manual | Discussion posts + subreddit suggestions |
-| TikTok | tiktok | Manual | Hook + script + caption + hashtags |
-| YouTube | youtube | Manual | Title + description + script + tags |
 | Threads | threads | Coming soon | Conversational posts |
+
+**Important**: To auto-publish, connect your platforms at [Dashboard > Connections](https://blogburst.ai/dashboard/connections). Twitter/X is one-click OAuth — takes 5 seconds.
 
 ## Links
 
