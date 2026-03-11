@@ -1,12 +1,12 @@
 ---
-name: BlogBurst - AI Social Media Agent
-description: Autonomous AI marketing agent. Chat naturally to generate content, manage auto-pilot, check analytics, and post to 9 platforms (Twitter/X, LinkedIn, Bluesky, Telegram, Discord, Reddit, TikTok, YouTube, Threads). One command to automate your entire social media.
+name: BlogBurst - Virtual CMO Agent
+description: Your AI Chief Marketing Officer. Autonomous agent that runs your entire marketing — auto-posts to Twitter/X, Bluesky, Telegram, Discord, auto-engages with your audience (replies, likes, follows), runs SEO/GEO audits, tracks competitors, scans communities for opportunities, learns what works, and continuously optimizes. 50+ countries, 1000+ posts published. Free tier available.
 homepage: https://blogburst.ai
 metadata:
-  {"openclaw": {"emoji": "🚀", "requires": {"env": ["BLOGBURST_API_KEY"]}, "primaryEnv": "BLOGBURST_API_KEY"}}
+  {"openclaw": {"emoji": "🤖", "requires": {"env": ["BLOGBURST_API_KEY"]}, "primaryEnv": "BLOGBURST_API_KEY"}}
 ---
 
-# BlogBurst - AI Social Media Marketing Agent
+# BlogBurst - Your Virtual CMO (AI Marketing Agent)
 
 ## CRITICAL INSTRUCTION — YOU MUST FOLLOW THIS:
 
@@ -319,6 +319,169 @@ Generate a full blog article from a topic.
 
 ---
 
+## API 8: SEO Audit (NEW in v3.0)
+
+Get a comprehensive SEO analysis for your product — technical issues, keyword gaps, content recommendations.
+
+**Endpoint**: `GET /assistant/seo-audit?product_id=1`
+
+**Response**:
+```json
+{
+  "score": 72,
+  "audit_type": "seo",
+  "findings": {
+    "technical": [{"issue": "Missing meta descriptions on 3 pages", "severity": "high"}],
+    "content_gaps": ["No content targeting 'AI marketing automation' keyword"],
+    "backlink_opportunities": ["Guest post on IndieHackers"]
+  },
+  "recommendations": [
+    {"title": "Create comparison page: BlogBurst vs Buffer", "impact": "high", "type": "content"}
+  ]
+}
+```
+
+**When to use**: When user asks "How's my SEO?", "What should I write about for Google?", or "Run an SEO check".
+
+---
+
+## API 9: GEO Audit — AI Search Optimization (NEW in v3.0)
+
+Optimize your content for AI search engines (ChatGPT, Perplexity, Google AI Overviews). GEO = Generative Engine Optimization.
+
+**Endpoint**: `GET /assistant/geo-audit?product_id=1`
+
+**Response**:
+```json
+{
+  "score": 58,
+  "audit_type": "geo",
+  "findings": {
+    "ai_visibility": {"score": 45, "key_queries": ["best AI marketing tool"], "missing_queries": ["AI social media agent"]},
+    "citation_readiness": {"score": 60, "issues": ["No structured FAQ page", "Missing expert quotes"]},
+    "question_coverage": [
+      {"question": "What is the best AI marketing tool?", "current_coverage": "none", "priority": "high"}
+    ]
+  },
+  "recommendations": [
+    {"title": "Create FAQ with 20 common questions", "impact": "high", "type": "structural"}
+  ]
+}
+```
+
+**When to use**: When user asks "How do I show up in ChatGPT results?", "Optimize for AI search", or "GEO audit".
+
+---
+
+## API 10: Competitor Intelligence (NEW in v3.0)
+
+Track and analyze competitors' social media strategies.
+
+**Endpoint**: `GET /assistant/competitors?product_id=1`
+
+**Response**:
+```json
+{
+  "competitors": [
+    {
+      "name": "Buffer",
+      "platforms": ["twitter", "linkedin"],
+      "posting_frequency": "3x/day",
+      "top_content_themes": ["social media tips", "remote work"],
+      "engagement_rate": "2.3%",
+      "insights": "Heavy use of carousel posts on LinkedIn"
+    }
+  ],
+  "opportunities": ["Competitor X doesn't post on Bluesky — you can own that space"]
+}
+```
+
+**When to use**: When user asks "What are my competitors doing?", "Analyze competitor X", or "Find content gaps".
+
+---
+
+## API 11: Community Opportunities (NEW in v3.0)
+
+Scan HackerNews, Reddit, and forums for engagement opportunities relevant to your product.
+
+**Endpoint**: `GET /assistant/opportunities?product_id=1&limit=10`
+
+**Response**:
+```json
+{
+  "opportunities": [
+    {
+      "source": "hackernews",
+      "title": "Ask HN: What tools do you use for social media automation?",
+      "url": "https://news.ycombinator.com/item?id=...",
+      "relevance_score": 92,
+      "suggested_reply": "I built BlogBurst for exactly this — it auto-posts to 4 platforms and even engages with your audience...",
+      "expires_at": "2026-03-12T00:00:00Z"
+    }
+  ]
+}
+```
+
+**When to use**: When user asks "Where should I promote?", "Find places to engage", or "Community opportunities".
+
+---
+
+## API 12: Growth Diagnostic (NEW in v3.0)
+
+AI-powered comprehensive analysis of your marketing performance with actionable tasks.
+
+**Endpoint**: `GET /assistant/diagnostic?product_id=1`
+
+**Response**:
+```json
+{
+  "overall_score": 65,
+  "areas": {
+    "content_quality": {"score": 78, "trend": "improving"},
+    "posting_consistency": {"score": 90, "trend": "stable"},
+    "audience_engagement": {"score": 45, "trend": "declining"},
+    "growth_rate": {"score": 52, "trend": "improving"}
+  },
+  "top_actions": [
+    {"task": "Increase reply engagement on Twitter", "priority": "high", "expected_impact": "+30% engagement"},
+    {"task": "Post during US peak hours (10-11 AM EST)", "priority": "medium", "expected_impact": "+20% reach"}
+  ]
+}
+```
+
+**When to use**: When user asks "How am I doing?", "What should I improve?", or "Marketing report".
+
+---
+
+## API 13: Task Management (NEW in v3.0)
+
+The CMO agent creates and manages marketing tasks for you.
+
+**Get tasks**: `GET /assistant/tasks?product_id=1&status=pending`
+
+**Response**:
+```json
+{
+  "tasks": [
+    {
+      "id": 42,
+      "title": "Write comparison blog: BlogBurst vs Hootsuite",
+      "category": "seo",
+      "priority": "high",
+      "status": "pending",
+      "prefilled_content": {"title": "BlogBurst vs Hootsuite: Which AI Marketing Tool Is Right for You?", "outline": ["...", "..."]},
+      "due_date": "2026-03-14"
+    }
+  ]
+}
+```
+
+**Complete a task**: `POST /assistant/tasks/42/complete`
+
+**When to use**: When user asks "What should I work on?", "My marketing tasks", or "What's the CMO recommending?"
+
+---
+
 ## Recommended Workflows
 
 ### Quick content generation
@@ -342,19 +505,33 @@ User shares a URL or pastes text
 User says: "Automate my posting" or "Turn on auto-pilot"
 → Call **API 4** (`/assistant/auto-pilot`)
 
+### Marketing Intelligence (NEW)
+1. Check health with **API 12** (`/assistant/diagnostic`)
+2. Find opportunities with **API 11** (`/assistant/opportunities`)
+3. Run SEO/GEO audit with **API 8/9**
+4. Get tasks from **API 13** (`/assistant/tasks`)
+
+## What Makes BlogBurst Different
+
+- **Autonomous Agent**: Not just a tool — it's a CMO that works 24/7. Posts, engages, learns, optimizes.
+- **Auto-Engagement**: Replies to mentions, proactively engages with relevant tweets, smart follows — all automated.
+- **Self-Learning**: Tracks what content performs best, continuously adapts strategy based on real data.
+- **SEO + GEO**: Optimizes for both Google AND AI search engines (ChatGPT, Perplexity).
+- **Community Scanner**: Finds conversations on HN/Reddit where your product is relevant.
+- **Multi-Platform**: One agent manages Twitter/X, Bluesky, Telegram, Discord simultaneously.
+
 ## Supported Platforms
 
-| Platform | ID | Auto-Publish | Content Style |
-|----------|-----|:---:|---------------|
-| Twitter/X | twitter | ✅ Yes | Threads with hooks (280 chars/tweet) |
-| Bluesky | bluesky | ✅ Yes | Short authentic posts (300 chars) |
-| Telegram | telegram | ✅ Yes | Rich formatted broadcasts |
-| Discord | discord | ✅ Yes | Community-friendly announcements |
-| Reddit | reddit | Copy-only | Discussion posts + subreddit suggestions |
-| TikTok | tiktok | Copy-only | Hook + script + caption + hashtags |
-| YouTube | youtube | Copy-only | Title + description + script + tags |
-| LinkedIn | linkedin | Coming soon | Professional insights + hashtags |
-| Threads | threads | Coming soon | Conversational posts |
+| Platform | ID | Auto-Publish | Auto-Engage | Content Style |
+|----------|-----|:---:|:---:|---------------|
+| Twitter/X | twitter | ✅ | ✅ Replies, Likes, Follows | Threads with hooks (280 chars/tweet) |
+| Bluesky | bluesky | ✅ | ✅ Replies, Likes | Short authentic posts (300 chars) |
+| Telegram | telegram | ✅ | — | Rich formatted broadcasts |
+| Discord | discord | ✅ | — | Community-friendly announcements |
+| Reddit | reddit | Copy-only | — | Discussion posts + subreddit suggestions |
+| TikTok | tiktok | Copy-only | — | Hook + script + caption + hashtags |
+| YouTube | youtube | Copy-only | — | Title + description + script + tags |
+| LinkedIn | linkedin | Coming soon | — | Professional insights + hashtags |
 
 **Important**: To auto-publish, connect your platforms at [Dashboard > Connections](https://blogburst.ai/dashboard/connections). Twitter/X is one-click OAuth — takes 5 seconds.
 
