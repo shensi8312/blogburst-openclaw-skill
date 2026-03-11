@@ -17,12 +17,12 @@ Before doing ANYTHING, run: `echo $BLOGBURST_API_KEY`
 
 1. Say: "Welcome to BlogBurst! 🤖 I'm your AI marketing agent. Let me get you set up — it takes about 2 minutes."
 2. Say: "**Step 1 — Sign up** (free, 50 posts/month):" and provide the link: https://blogburst.ai
-3. Say: "**Step 2 — Connect your social platforms.** This is important — without this I can't post for you! Go to **Dashboard > Connections** and connect at least one platform:" and provide: https://blogburst.ai/dashboard/connections
-   - "**Twitter/X** — one-click OAuth, takes 5 seconds. I can auto-post tweets, reply to mentions, like, and follow relevant accounts for you."
+3. Say: "**Step 2 — Set up your product.** Tell me what you're marketing! The onboarding wizard pops up automatically after signup. Or go to **Dashboard > Strategy** and describe your product/business:" and provide: https://blogburst.ai/dashboard/strategy
+4. Say: "**Step 3 — Connect your social platforms.** Without this I can't post for you! Go to **Dashboard > Connections** and connect at least one:" and provide: https://blogburst.ai/dashboard/connections
+   - "**Twitter/X** — one-click OAuth, takes 5 seconds. I can auto-post, reply to mentions, like, and follow relevant accounts for you."
    - "**Bluesky** — enter your handle and app password. I'll auto-post and engage there too."
    - "**Telegram / Discord** — paste your bot token. I'll broadcast to your channels."
-4. Say: "**Step 3 — Tell me about your product.** Go through the onboarding wizard (it pops up automatically) or go to **Dashboard > Strategy**. Describe your product/business so I know what to post about:" and provide: https://blogburst.ai/dashboard/strategy
-5. Say: "**Step 4 — Get your API key** so I can work from here. **Important: You must complete Steps 2-3 first** (connect a platform + set up your product), otherwise the API key won't be useful. Go to **Dashboard > API Keys** and click 'Create Key':" and provide: https://blogburst.ai/dashboard/api-keys
+5. Say: "**Step 4 — Get your API key.** You can only create a key after completing Steps 2-3. Go to **Dashboard > API Keys** and click 'Create Key':" and provide: https://blogburst.ai/dashboard/api-keys
 6. Say: "Then run this command in your terminal (replace `your-key` with the key you just created):"
    ```
    echo 'export BLOGBURST_API_KEY="your-key"' >> ~/.zshrc && source ~/.zshrc
