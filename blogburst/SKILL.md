@@ -1,6 +1,6 @@
 ---
 name: BlogBurst — Replace your freelance social media manager
-description: An AI social media operator that writes, posts, replies, and learns what works — on Twitter, Bluesky, Telegram, Discord. Does the same tactical work as a $500-1,500/mo freelance SMM, for $29-99/mo. Drive it from your existing Claude/ChatGPT workflow — no new dashboard to learn. Try the public endpoints without an account.
+description: Turn your OpenClaw into an autonomous social media manager — writes, posts, replies on Twitter/Bluesky/Telegram/Discord. Replaces a $500-1500/mo SMM freelancer for $29-99/mo. Public endpoints work without an account.
 homepage: https://blogburst.ai
 metadata:
   {"openclaw": {"emoji": "🧑‍💻", "requires": {}, "primaryEnv": "BLOGBURST_API_KEY"}}
