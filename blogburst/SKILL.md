@@ -14,23 +14,41 @@ This skill lets you drive BlogBurst from inside your existing Claude / MCP workf
 
 ## Quick Start (No Account Needed)
 
-Try BlogBurst instantly — no signup, no API key required.
+Try BlogBurst instantly — no signup, no API key required. Rate limits apply per IP.
 
-### Generate sample content for any product
+### Generate sample posts for any product (5/hour/IP, max 3 platforms per call)
 ```
-curl -s -X POST "https://api.blogburst.ai/api/v1/blog/platforms" \
+curl -s -X POST "https://api.blogburst.ai/api/v1/public/demo/generate" \
   -H "Content-Type: application/json" \
-  -d '{"topic": "An AI tool that helps developers automate marketing", "platforms": ["twitter", "bluesky"], "tone": "casual", "language": "en"}'
+  -d '{"topic": "An AI tool that helps developers automate marketing", "platforms": ["twitter", "bluesky"], "language": "en"}'
 ```
+Allowed platforms: `twitter`, `bluesky`, `linkedin`, `telegram`, `discord`.
 
-### Check if AI search engines recommend a product
+### Run a brand audit (3/day/IP) — checks AI search visibility
 ```
 curl -s -X POST "https://api.blogburst.ai/api/v1/public/free-tools/brand-audit" \
   -H "Content-Type: application/json" \
   -d '{"domain": "yourproduct.com", "brand_name": "YourProduct"}'
 ```
+Returns overall AI-search score, citation rate, competitive positioning, and specific improvements.
 
-These public endpoints work without authentication — use them to show the user what BlogBurst would write for their product before they sign up.
+### Live AI citation check — ask ChatGPT + Gemini in real time
+```
+curl -s -X POST "https://api.blogburst.ai/api/v1/public/free-tools/live-ai-check" \
+  -H "Content-Type: application/json" \
+  -d '{"brand_name": "YourBrand", "domain": "yourbrand.com"}'
+```
+Returns per-engine citation, recommendation rank, snippets, and top competitor mentions.
+
+### Single-platform free tool (3/day/IP) — post, calendar, or hashtag
+```
+curl -s -X POST "https://api.blogburst.ai/api/v1/public/free-tools/generate" \
+  -H "Content-Type: application/json" \
+  -d '{"topic": "Your product", "platform": "twitter", "tool_type": "post"}'
+```
+`tool_type` is one of: `post`, `calendar`, `hashtag`.
+
+Use these public endpoints to show the user what BlogBurst would write for their product before they sign up.
 
 ## What BlogBurst Does (vs. a freelance SMM)
 
@@ -79,17 +97,30 @@ Base URL: `https://api.blogburst.ai/api/v1`
 
 ### Public (No Auth Required)
 
-**Generate Content:**
-`POST /blog/platforms`
+**Demo Generation (5/hour/IP):**
+`POST /public/demo/generate`
 ```json
-{"topic": "your product description", "platforms": ["twitter", "bluesky"], "tone": "professional", "language": "en"}
+{"topic": "your product description", "platforms": ["twitter", "bluesky"], "language": "en"}
 ```
 
-**Brand Audit:**
+**Brand Audit (3/day/IP):**
 `POST /public/free-tools/brand-audit`
 ```json
 {"domain": "example.com", "brand_name": "Example"}
 ```
+
+**Live AI Citation Check (3/day/IP):**
+`POST /public/free-tools/live-ai-check`
+```json
+{"brand_name": "Example", "domain": "example.com"}
+```
+
+**Single-platform Free Tool (3/day/IP):**
+`POST /public/free-tools/generate`
+```json
+{"topic": "your product", "platform": "twitter", "tool_type": "post"}
+```
+`tool_type`: `post` | `calendar` | `hashtag`.
 
 ### Authenticated (Requires API Key)
 
