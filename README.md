@@ -1,23 +1,33 @@
-# BlogBurst — Replace your freelance social media manager
+# BlogBurst OpenClaw Skill
 
-Your AI social media operator. Writes posts, replies to comments, learns what works. Does the same tactical job as a $500-1,500/month freelancer, for $29-99/month. Never sleeps.
+BlogBurst is a proof-led growth operator for solo and bootstrapped founders.
 
-## Try It Now (No Signup Needed)
+This repository contains the BlogBurst OpenClaw skill. Its job is to help an agent explain and operate BlogBurst as a measurable growth loop:
 
-```
-/blogburst Generate a tweet about: [describe your product]
-```
+> buyer question → grounded post → quality gate → tracked click/signup → next experiment
 
-That's it. See what BlogBurst would write for your product — instantly, no account required.
+## Canonical Skill Source
 
-## What It Does
+There are currently two local copies for compatibility with earlier OpenClaw/ClawHub layouts:
 
-- **Auto-Pilot**: Posts daily to Twitter, Bluesky, Telegram, Discord — you do nothing
-- **Smart Engagement**: Likes, replies, follows relevant accounts in your niche
-- **Self-Learning**: Tracks what works every week, adjusts tone/topic/timing
-- **SEO + GEO**: Optimizes for Google AND AI search (ChatGPT, Perplexity, Gemini)
+- `blogburst/SKILL.md`
+- `skills/blogburst/SKILL.md`
 
-What it does **not** do: strategic brand/positioning work, campaign design. That's a CMO's job; BlogBurst is the operator.
+Keep them in sync until the publish path is fully consolidated. Do not update only one copy.
+
+## Positioning
+
+Do not pitch BlogBurst as a generic social media manager, content generator, or cheap freelancer.
+
+Pitch it as:
+
+> BlogBurst turns real buyer questions into proof-led growth experiments, then tracks which ones create clicks, signups, and revenue.
+
+## Safety
+
+The skill must never instruct an agent to print or expose `BLOGBURST_API_KEY`.
+
+The skill must not encourage automated Reddit or Hacker News promotion. It can draft useful replies for human review.
 
 ## Install
 
@@ -25,40 +35,9 @@ What it does **not** do: strategic brand/positioning work, campaign design. That
 npx clawhub@latest install blogburst
 ```
 
-## Full Setup (2 minutes, when you're ready)
-
-1. Sign up free at [blogburst.ai](https://blogburst.ai) (7-day Pro trial)
-2. Paste your product URL → AI analyzes it
-3. Connect Twitter or Bluesky (1-click) — Telegram works without OAuth
-4. Get API key: Dashboard > API Keys
-5. `export BLOGBURST_API_KEY="your-key"`
-
-## Usage
-
-Just talk naturally:
-
-```
-Generate a Twitter post about my product launch
-Turn on auto-pilot, 3 posts per day
-How did my posts perform this week?
-Reply to anyone who mentioned my brand today
-Run an SEO audit on my site
-```
-
-## Pricing
-
-- **Solo** $29/mo — Bluesky + Telegram + Twitter content gen (copy-paste)
-- **Growth** $49/mo — Full Twitter automation
-- **Pro** $99/mo — +GEO audits, multi-account, unlimited engagement
-
-All plans include a 7-day Pro trial. [See pricing →](https://blogburst.ai/pricing)
-
 ## Links
 
-- [Website](https://blogburst.ai)
-- [Blog](https://blogburst.ai/blog)
-- [API Docs](https://api.blogburst.ai/docs)
-
-## License
-
-MIT
+- Website: https://blogburst.ai
+- API docs: https://api.blogburst.ai/docs
+- Pricing: https://blogburst.ai/pricing
+- Proof page: https://blogburst.ai/blog/ai-agent-marketing-30-days-results
