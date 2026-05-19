@@ -8,6 +8,20 @@ This repository contains the BlogBurst OpenClaw skill. Its job is to help an age
 
 ## Canonical Skill Source
 
+Canonical live listing:
+
+- https://clawhub.ai/shensi8312/blogburst
+
+Canonical source repository:
+
+- https://github.com/shensi8312/blogburst-openclaw-skill
+
+Deprecated stale listing:
+
+- https://clawhub.ai/0xspeter/blogburst-3-1-2
+
+Do not publish to, install from, or reference the stale `0xspeter/blogburst-3-1-2` listing. It is an old third-party listing with outdated positioning and security warnings.
+
 There are currently two local copies for compatibility with earlier OpenClaw/ClawHub layouts:
 
 - `blogburst/SKILL.md`
