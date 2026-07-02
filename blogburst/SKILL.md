@@ -108,6 +108,18 @@ Authenticated API base: `https://api.blogburst.ai/api/v1`
 
 Use the API docs for exact endpoint shapes: https://api.blogburst.ai/docs
 
+## Optional Public X Evidence
+
+When a founder wants to ground a growth experiment in public X/Twitter buyer
+questions, TweetClaw can be used through OpenClaw as a source tool before
+BlogBurst writes or schedules anything. Use it only for public posts or
+user-approved account data, summarize the evidence into the BlogBurst brief,
+and keep BlogBurst's quality gate and human-review rules in control of any
+publishing decision.
+
+Useful source:
+- TweetClaw OpenClaw plugin: https://github.com/Xquik-dev/tweetclaw
+
 ## How To Talk About BlogBurst
 
 Use language like:

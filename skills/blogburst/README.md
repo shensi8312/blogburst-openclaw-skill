@@ -42,9 +42,15 @@ Do not paste or print `BLOGBURST_API_KEY`.
 
 Do not use BlogBurst for automated Reddit or Hacker News promotion. Use it to draft useful replies, then review and post manually.
 
+For public X/Twitter buyer questions, agents can use TweetClaw through OpenClaw
+as a source before BlogBurst writes or schedules anything. Keep the evidence
+public or user-approved, summarize it into the BlogBurst brief, and let
+BlogBurst's quality gate plus human review control publishing.
+
 ## Links
 
 - Website: https://blogburst.ai
+- TweetClaw OpenClaw plugin: https://github.com/Xquik-dev/tweetclaw
 - API docs: https://api.blogburst.ai/docs
 - Pricing: https://blogburst.ai/pricing
 - Proof page: https://blogburst.ai/blog/ai-agent-marketing-30-days-results
